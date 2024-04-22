@@ -1,59 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OBMS
+﻿internal class Book
 {
-	internal class Book
+	public string Title { get; set; }
+	public string Author { get; set; }
+	public int ISBN { get; set; }
+	public double Price { get; set; }
+	public int QuantityAvailable { get; set; }
+
+	public Book() { }
+
+	public Book(string title, string author, int isbn, double price, int quantityAvailable)
 	{
-		private string title;
-		private string author;
-		private int iSBN;
-		private double price;
-		private int quantityAvailable;
+		Title = title;
+		Author = author;
+		ISBN = isbn;
+		Price = price;
+		QuantityAvailable = quantityAvailable;
+	}
 
-		public Book()
-		{
+	public string DisplayDetails()
+	{
+		return $"Book Name: {Title}, Author: {Author}, Price: {Price}, Quantity Available: {QuantityAvailable}";
+	}
 
-		}
-
-		public string Title
-		{
-			get { return  title; }
-		
-			set
-			{
-				title = value;
-			}
-		}
-
-		public string Author
-		{
-			get { return author; }
-			
-			set { author = value;}
-		}
-		public int ISBN
-		{
-			get { return iSBN; }
-			set { iSBN = value;}
-		}
-		public double Price
-		{
-			get { return price; }
-			set { price = value;}
-		}
-		public int QuantityAvailable
-		{
-			get { return quantityAvailable; }
-			set { quantityAvailable = value; }
-		}
-
-		public string DisplayDetails()
-		{
-			return $"Book Name is: {Title}, Author: {Author } , Price: {Price }, And Quantity Available is:{QuantityAvailable} ";
-		}
-    }
+	public override string ToString()
+	{
+		return DisplayDetails();
+	}
 }
