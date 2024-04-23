@@ -8,13 +8,23 @@ namespace OBMS
 {
 	internal class Admin : User
 	{
-        public Admin()
-        {
+		/* Admin Class (Inherits from User):
+            Additional Methods: AddBook, RemoveBook, UpdateBookDetails
+           Inventory Class:
+            Properties: List of Books, StockStatus
+            Methods: AddBookToInventory, RemoveBookFromInventory, UpdateStockStatus
+           BookstoreManager Class:
+            Properties: Inventory, Users, Orders
+            Methods: InitializeInventory, RegisterUser, ProcessOrder
+		*/
+		Inventory inventory = new Inventory();
+        public Admin(string username, string password) : base(username, password)
+		{
             
         }
-        public void AddBook()
+        public void AddBook(Book book)
         {
-
+			
         }
 		public void RemoveBook(int id)
 		{

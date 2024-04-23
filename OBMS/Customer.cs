@@ -8,34 +8,57 @@ namespace OBMS
 {
 	internal class Customer : User
 	{
-		private Book[] shoppingCart;
-		private Order[] orders;
+		private List<Book> shoppingCart;
+		private List<Order> orders;
 
-        public Customer()
+		public Customer(string username, string password) : base(username, password)
+		{
+			
+		
+			shoppingCart = new List<Book>();
+			orders = new List<Order>();
+		}
+		public void AddToCart(Book book)
         {
-            
-        }
-        public void AddToCart(Book book)
-        {
-            shoppingCart[shoppingCart.Length +1] = book;
+            shoppingCart.Add(book);
 
         }
-        public void AddOrder(Order order) { }
+       // public void AddOrder(Order order) { }
 		public void RemoveFromCart(string title)
 		{
-			for (int i = 0;i < shoppingCart.Length;i++)
+			Book bookToRemove = shoppingCart.FirstOrDefault(b => b.Title == title);
+			if(bookToRemove != null)
 			{
-				if (shoppingCart[i].Title == title) { }//shoppingCart[i]; }
+				shoppingCart.Remove(bookToRemove);
+			}
+			else
+			{
+				Console.WriteLine("the book is not found in the shopping cart");
 			}
 		}
-		public double CheckOut()
+		public Order CheckOut()
 		{
-			double localPrice =0;
-			for (int i = 0; i < shoppingCart.Length; i++)
+			//create a new order
+			Order order = new Order();
+
+			//add books in shopping cart in the order
+			foreach(Book book in shoppingCart)
 			{
-				localPrice += shoppingCart[i].Price;
+				order.AddBook(book);
 			}
-			return localPrice;
+
+			//calculate price
+			double totalPrice = shoppingCart.Sum(p => p.Price);
+			order.TotalPrice = totalPrice;
+
+			//clear shopping cart
+			shoppingCart.Clear();
+
+			//add order to customer list of orders
+			orders.Add(order);
+
+			return order;
+
 		}
 	}
 

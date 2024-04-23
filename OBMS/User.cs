@@ -1,26 +1,27 @@
 ﻿internal class User
 {
-	private string userName;
-	private string password;
-	private string email;
-	private bool isLogged = false;
+	//private string userName;
+	//private string password;
+	//private string email;
+	//private bool isLogged = false;
 
-	public string UserName { get { return userName; } }
-	public string Password { get { return password; } }
-	public string Email { get { return email; } }
-	public bool IsLogged { get { return isLogged; } }
+	public string UserName { get; set; }
+	public string Password { get; set; }
+	public string Email { get; set; }
+	public bool IsLogged { get; set; }
 
 	public User(string username, string password)
 	{
-		this.userName = username;
-		this.password = password;
+		this.UserName = username;
+		this.Password = password;
+		IsLogged = false;	
 	}
 
 	public bool LogIn(string username, string password)
 	{
 		if (UserName == username && Password == password)
 		{
-			isLogged = true;
+			IsLogged = true;
 			return true;
 		}
 		return false;
@@ -28,7 +29,7 @@
 
 	public void LogOut()
 	{
-		isLogged = false;
+		IsLogged = false;
 	}
 
 	public bool UpdateProfile(string newUsername, string newPassword, string newEmail)
@@ -41,9 +42,9 @@
 		Console.WriteLine();
 		if (sure == 'y')
 		{
-			userName = newUsername;
-			password = newPassword;
-			email = newEmail;
+			UserName = newUsername;
+			Password = newPassword;
+			Email = newEmail;
 			return true;
 		}
 		return false;
