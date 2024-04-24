@@ -24,11 +24,11 @@ namespace OBMS
         }
         public void AddBook(Book book)
         {
-			
+			inventory.addBook(book);
         }
 		public void RemoveBook(int id)
 		{
-
+			inventory.removeBook(id);
 		}
 		public void UpdateBookDetails()
 		{

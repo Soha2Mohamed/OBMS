@@ -5,6 +5,7 @@
 	public int ISBN { get; set; }
 	public double Price { get; set; }
 	public int QuantityAvailable { get; set; }
+	public string StockStatus { get; set; }
 
 	public Book() { }
 
