@@ -39,7 +39,7 @@ namespace OBMS
 		public Order CheckOut()
 		{
 			//create a new order
-			Order order = new Order();
+			Order order = new Order(this);
 
 			//add books in shopping cart in the order
 			foreach(Book book in shoppingCart)

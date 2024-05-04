@@ -1,48 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OBMS
+﻿internal class Inventory
 {
-	internal class Inventory
+	private List<Book> books;
+
+	public Inventory()
 	{
-		
-		private List<Book> books;
-        public Inventory()
-        {
-            books  = new List<Book>();
-        }
-		public void addBook(Book book)
+		books = new List<Book>();
+	}
+
+	public void AddBook(Book book, User user)
+	{
+		if (user.UserR == User.UserRole.Admin)
 		{
 			books.Add(book);
 		}
-        public List<Book> getAllBooks()
+		else
 		{
-			return books;
+			Console.WriteLine("Only admins can add books to the inventory.");
 		}
+	}
 
-		internal void removeBook(int id)
+	public void RemoveBook(int id, User user)
+	{
+		if (user.UserR == User.UserRole.Admin)
 		{
 			books.RemoveAt(id);
 		}
-		public void UpdateStockStatus()
+		else
 		{
-				foreach (Book book in books)
-				{
-					if (book.QuantityAvailable == 0)
-					{
-						book.StockStatus = "Out of Stock";
-					}
-					else if(book.QuantityAvailable <= 5)
-				    {
-					    book.StockStatus = "Low in stock";
-				    }
-					else { book.StockStatus = book.QuantityAvailable.ToString();}
-				
-				}
+			Console.WriteLine("Only admins can remove books from the inventory.");
+		}
+	}
+
+	public void UpdateStockStatus()
+	{
+		foreach (Book book in books)
+		{
+			if (book.QuantityAvailable == 0)
+			{
+				book.StockStatus = "Out of Stock";
+			}
+			else if (book.QuantityAvailable <= 5)
+			{
+				book.StockStatus = "Low in stock";
+			}
+			else
+			{
+				book.StockStatus = book.QuantityAvailable.ToString();
+			}
 		}
 	}
 }

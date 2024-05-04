@@ -1,14 +1,16 @@
 ﻿internal class User
 {
-	//private string userName;
-	//private string password;
-	//private string email;
-	//private bool isLogged = false;
 
 	public string UserName { get; set; }
 	public string Password { get; set; }
 	public string Email { get; set; }
 	public bool IsLogged { get; set; }
+	public enum UserRole
+	{
+		RegularUser,
+		Admin
+	}
+	public UserRole UserR { get; set; } = UserRole.RegularUser;
 
 	public User(string username, string password)
 	{
@@ -24,7 +26,8 @@
 			IsLogged = true;
 			return true;
 		}
-		return false;
+        Console.WriteLine("Username or password is not correct.");
+        return false;
 	}
 
 	public void LogOut()
@@ -45,7 +48,8 @@
 			UserName = newUsername;
 			Password = newPassword;
 			Email = newEmail;
-			return true;
+            Console.WriteLine("Updated.");
+            return true;
 		}
 		return false;
 	}
