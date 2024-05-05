@@ -7,7 +7,12 @@
 	public int QuantityAvailable { get; set; }
 	public string StockStatus { get; set; }
 
-	public Book() { }
+	public Book(string title, string author,double price)
+	{
+		Title = title;
+		Author = author;
+		Price = price;
+	}
 
 	public Book(string title, string author, int isbn, double price, int quantityAvailable)
 	{

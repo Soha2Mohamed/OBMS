@@ -8,7 +8,6 @@ namespace OBMS
 {
 	internal class Order
 	{
-		
 		private Customer cus;
 		private List<Book> books = new List<Book>();
         public Order(Customer customer)
@@ -31,7 +30,13 @@ namespace OBMS
 
 		internal void AddBook(Book book)
 		{
+			if(book.QuantityAvailable ==0)
+			{
+                Console.WriteLine("$this book '{0}' is out of stock, sorry",book.Title);
+            }
 			books.Add(book);
+			book.QuantityAvailable--;
+
 		}
 		public void completeOrder()
 		{
@@ -39,9 +44,9 @@ namespace OBMS
 			Console.WriteLine("Books purchased:");
 			foreach (Book book in books)
 			{
-				Console.WriteLine("- " + book.Title + " by " + book.Author + " ($" + String.Format("%.2f", book.Price) + ")");
+				Console.WriteLine("- " + book.Title + " by " + book.Author + " ($" +  book.Price + ")");
 			}
-			Console.WriteLine("Total: $" + String.Format("%.2f", CalculateTotalPrice()));
+			Console.WriteLine("Total: $" +  CalculateTotalPrice());
             Console.WriteLine();
 		}
 
